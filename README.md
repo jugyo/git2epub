@@ -1,8 +1,20 @@
-= git2epub
+git2epub
+====
 
-Description goes here.
+The tool that generate epub from git repository.
 
-== Note on Patches/Pull Requests
+Install
+----
+
+    gem install git2epub
+
+Usage
+----
+
+    git2epub http://github.com/jugyo/eeepub.git
+
+Note on Patches/Pull Requests
+----
  
 * Fork the project.
 * Make your feature addition or bug fix.
@@ -12,6 +24,7 @@ Description goes here.
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
-== Copyright
+Copyright
+----
 
 Copyright (c) 2010 jugyo. See LICENSE for details.
