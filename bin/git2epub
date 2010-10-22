@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 unless ARGV.size >= 1
-  puts "Usage: #{$0} GIT_URL [EPUB_FILE]"
+  puts "Usage: #{File.basename($0)} GIT_URL [EPUB_FILE]"
   exit!
 end
 
