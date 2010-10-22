@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+unless ARGV.size >= 1
+  puts "Usage: #{$0} GIT_URL [EPUB_FILE]"
+  exit!
+end
+
+$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+require 'git2epub'
+Git2Epub.run(ARGV[0], ARGV[1])
