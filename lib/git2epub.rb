@@ -20,9 +20,7 @@ module Git2Epub
 
     add_contents(epub, dir, git_url)
 
-    unless epub_file
-      epub_file = git_url.match(/:(.*)/)[1].gsub('/', '-') + '.epub'
-    end
+    epub_file = File.basename(git_url) + '.epub' unless epub_file
     puts "\e[32m => #{epub_file}\e[0m"
     epub.save(epub_file)
   end
