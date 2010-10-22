@@ -72,6 +72,9 @@ module Git2Epub
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja">
   <head>
     <title>#{label}</title>
+    <style>
+      body {font-size: 76%;}
+    </style>
   </head>
   <body>
     <h1>#{label}</h1>
