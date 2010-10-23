@@ -1,7 +1,6 @@
 require 'bundler/setup'
 Bundler.require :default
 
-require 'cgi'
 require 'mime/types'
 require 'tmpdir'
 require 'fileutils'
@@ -37,51 +36,20 @@ module Git2Epub
     contents = Dir[File.join(dir, '**', '*')].
         select { |f| File.file?(f) && MIME::Types.of(f).first.ascii? rescue false }
 
-    lis = []
-    contents.each_with_index do |content, index|
-      label = content.sub(File.join(dir, '/'), '')
-      lis << "<li><a href='section_#{index + 1}.html'>#{label}</a></li>"
-    end
-
-    epub.sections << ['Index', <<-HTML]
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja">
-  <head>
-    <title>#{git_url}</title>
-  </head>
-  <body>
-    <h1>#{git_url}</h1>
-    <ul>
-      #{lis.join("\n")}
-    </ul>
-  </body>
-</html>
-    HTML
+    epub.sections << ['Index', render('index.haml', :git_url => git_url, :contents => contents, :dir => dir)]
 
     contents.each do |content|
       label = content.sub(File.join(dir, '/'), '')
-
+      epub.sections << [label, render('section.haml', :label => label, :content => content)]
       puts "\e[35m#{label}\e[0m"
-
-      epub.sections << [label, <<-HTML]
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja">
-  <head>
-    <title>#{label}</title>
-    <style>
-      body {font-size: 76%;}
-    </style>
-  </head>
-  <body>
-    <h1>#{label}</h1>
-    <pre><code>
-#{CGI.escapeHTML(File.read(content))}
-    </code></pre>
-  </body>
-</html>
-      HTML
     end
+  end
+
+  def self.render(template_name, locals)
+    Tilt.new(template(template_name), :escape_html => true).render(self, locals)
+  end
+
+  def self.template(name)
+    File.join(File.dirname(__FILE__), 'templates', name)
   end
 end

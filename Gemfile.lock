@@ -4,11 +4,15 @@ GEM
     builder (2.1.2)
     eeepub (0.5.1)
       builder
+    haml (3.0.18)
     mime-types (1.16)
+    tilt (1.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   eeepub
+  haml
   mime-types
+  tilt

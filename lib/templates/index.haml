@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    %title= git_url
+  %body
+    %h1= git_url
+    %ul
+      - contents.each_with_index do |content, index|
+        %li
+          %a{:href => "section_#{index + 1}.html"}
+            = content.sub(File.join(dir, '/'), '')

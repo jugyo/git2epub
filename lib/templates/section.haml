@@ -1,0 +1,12 @@
+!!!
+%html
+  %head
+    %title= label
+    %style{:type => 'text/css'}
+      :css
+        pre {font-size: 76%;}
+  %body
+    %h1= label
+    %pre
+      %code
+        = File.read(content)
