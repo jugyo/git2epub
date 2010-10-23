@@ -11,7 +11,6 @@ module Git2Epub
 
       epub = EeePub::Easy.new do
         title       git_url
-        creator     `whoami`
         identifier  git_url, :scheme => 'URL'
         uid         git_url
       end
