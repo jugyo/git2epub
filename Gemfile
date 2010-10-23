@@ -1,6 +1,6 @@
 source 'http://rubygems.org/'
 
 gem 'eeepub'
-gem 'mime-types'
+gem 'ptools'
 gem 'haml'
 gem 'tilt'

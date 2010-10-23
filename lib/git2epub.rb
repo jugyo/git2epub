@@ -1,7 +1,6 @@
 require 'bundler/setup'
 Bundler.require :default
 
-require 'mime/types'
 require 'tmpdir'
 require 'fileutils'
 
@@ -33,8 +32,7 @@ module Git2Epub
     end
 
     def add_contents(epub, dir, git_url)
-      contents = Dir[File.join(dir, '**', '*')].
-          select { |f| File.file?(f) && MIME::Types.of(f).first.ascii? rescue false }
+      contents = Dir[File.join(dir, '**', '*')].select { |f| File.file?(f) && !File.binary?(f) }
 
       epub.sections << ['Index', render('index.haml', :git_url => git_url, :contents => contents, :dir => dir)]
 
