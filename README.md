@@ -13,11 +13,6 @@ Usage
 
     git2epub http://github.com/jugyo/eeepub.git
 
-Todo
-----
-
-* include README etc.. (now, files are chosen by extention)
-
 Note on Patches/Pull Requests
 ----
  
