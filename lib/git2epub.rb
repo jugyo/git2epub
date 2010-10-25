@@ -1,5 +1,7 @@
-require 'bundler/setup'
-Bundler.require :default
+require 'eeepub'
+require 'ptools'
+require 'haml'
+require 'tilt'
 
 require 'tmpdir'
 require 'fileutils'
